@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -36,6 +37,14 @@ public class MainActivity extends AppCompatActivity {
         populateItems();
         myListView = (ListView) findViewById(R.id.listView);
         myListView.setAdapter(toDoAdapter);
+        myListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                todoItems.remove(position);
+                toDoAdapter.notifyDataSetChanged();
+                return true;
+            }
+        });
         addItemText = (EditText) findViewById(R.id.etEditText);
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
