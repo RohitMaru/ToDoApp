@@ -1,106 +1,1 @@
-package com.mycompany.home.todoapp;
-
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
-
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
-
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity {
-
-    ArrayList<String> todoItems;
-    ArrayAdapter<String> toDoAdapter;
-    ListView myListView;
-    EditText addItemText;
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        populateItems();
-        myListView = (ListView) findViewById(R.id.listView);
-        myListView.setAdapter(toDoAdapter);
-        myListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                todoItems.remove(position);
-                toDoAdapter.notifyDataSetChanged();
-                return true;
-            }
-        });
-        addItemText = (EditText) findViewById(R.id.etEditText);
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-    }
-
-    private void populateItems() {
-        todoItems = new ArrayList<>();
-//        todoItems.add("Item 1");
-//        todoItems.add("Item 2");
-//        todoItems.add("Item 3");
-//        todoItems.add("Item 4");
-//        todoItems.add("Item 5");
-
-        toDoAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, todoItems);
-    }
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    public Action getIndexApiAction() {
-        Thing object = new Thing.Builder()
-                .setName("Main Page") // TODO: Define a title for the content shown.
-                // TODO: Make sure this auto-generated URL is correct.
-                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
-                .build();
-        return new Action.Builder(Action.TYPE_VIEW)
-                .setObject(object)
-                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
-                .build();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        AppIndex.AppIndexApi.start(client, getIndexApiAction());
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(client, getIndexApiAction());
-        client.disconnect();
-    }
-
-    public void addNewItemToList(View view) {
-        toDoAdapter.add(addItemText.getText().toString());
-        addItemText.setText("");
-    }
-}
+package com.mycompany.home.todoapp;import android.content.Intent;import android.net.Uri;import android.os.Bundle;import android.support.v7.app.AppCompatActivity;import android.util.Log;import android.view.View;import android.widget.AdapterView;import android.widget.ArrayAdapter;import android.widget.EditText;import android.widget.ListView;import android.widget.Toast;import com.google.android.gms.appindexing.Action;import com.google.android.gms.appindexing.AppIndex;import com.google.android.gms.appindexing.Thing;import com.google.android.gms.common.api.GoogleApiClient;import org.apache.commons.io.FileUtils;import java.io.File;import java.io.IOException;import java.util.ArrayList;public class MainActivity extends AppCompatActivity {    private final int REQUEST_CODE = 20;    ArrayList<String> todoItems;    ArrayAdapter<String> toDoAdapter;    ListView myListView;    EditText addItemText;    /**     * ATTENTION: This was auto-generated to implement the App Indexing API.     * See https://g.co/AppIndexing/AndroidStudio for more information.     */    private GoogleApiClient client;    @Override    protected void onCreate(Bundle savedInstanceState) {        super.onCreate(savedInstanceState);        setContentView(R.layout.activity_main);        todoItems = new ArrayList<>();        readItems();        toDoAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, todoItems);        myListView = (ListView) findViewById(R.id.listView);        myListView.setAdapter(toDoAdapter);        myListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {            @Override            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {                todoItems.remove(position);                toDoAdapter.notifyDataSetChanged();                writeItems();                return true;            }        });        myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {            @Override            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {                Intent myIntent = new Intent(MainActivity.this, EditItemActivity.class);                myIntent.putExtra("toDoItemName", todoItems.get(position));                myIntent.putExtra("toDoItemIndex", position);                startActivityForResult(myIntent, REQUEST_CODE);            }        });        addItemText = (EditText) findViewById(R.id.etEditText);        // ATTENTION: This was auto-generated to implement the App Indexing API.        // See https://g.co/AppIndexing/AndroidStudio for more information.        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();    }    private void readItems() {        File fileDir = getFilesDir();        File file = new File(fileDir, "ToDo.txt");        try {            todoItems = new ArrayList<>(FileUtils.readLines(file));        } catch (IOException exception) {            Log.d("exception", "readItems: exception: "+exception);        }    }    private void writeItems() {        File fileDir = getFilesDir();        File file = new File(fileDir, "ToDo.txt");        try {            FileUtils.writeLines(file, todoItems);        } catch (IOException exception) {            Log.d("exception", "writeItems: exception: "+exception);        }    }    /**     * ATTENTION: This was auto-generated to implement the App Indexing API.     * See https://g.co/AppIndexing/AndroidStudio for more information.     */    public Action getIndexApiAction() {        Thing object = new Thing.Builder()                .setName("Main Page") // TODO: Define a title for the content shown.                // TODO: Make sure this auto-generated URL is correct.                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))                .build();        return new Action.Builder(Action.TYPE_VIEW)                .setObject(object)                .setActionStatus(Action.STATUS_TYPE_COMPLETED)                .build();    }    @Override    public void onStart() {        super.onStart();        // ATTENTION: This was auto-generated to implement the App Indexing API.        // See https://g.co/AppIndexing/AndroidStudio for more information.        client.connect();        AppIndex.AppIndexApi.start(client, getIndexApiAction());    }    @Override    public void onStop() {        super.onStop();        // ATTENTION: This was auto-generated to implement the App Indexing API.        // See https://g.co/AppIndexing/AndroidStudio for more information.        AppIndex.AppIndexApi.end(client, getIndexApiAction());        client.disconnect();    }    public void addNewItemToList(View view) {        toDoAdapter.add(addItemText.getText().toString());        addItemText.setText("");        writeItems();    }    @Override    protected void onActivityResult(int requestCode, int resultCode, Intent data) {//        super.onActivityResult(requestCode, resultCode, data);        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {            int position = data.getExtras().getInt("toDoItemIndex");            String toDoItemName = data.getExtras().getString("toDoItemValue");            Log.d("mytag", "saveAction: "+toDoItemName + " , index: "+position);            if (position != -1) {                todoItems.set(position, toDoItemName);                toDoAdapter.notifyDataSetChanged();                Toast.makeText(this, toDoItemName+" saved", Toast.LENGTH_SHORT).show();                writeItems();            }        }    }}

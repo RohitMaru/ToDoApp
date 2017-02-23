@@ -21,6 +21,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Applications/Android Studio.app/Contents/gradle/m2repository/commons-io/commons-io/2.4/commons-io-2.4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b1b6ea3b7e4aa4f492509a4952029cd8e48019ad">
+        <dex dex="/Users/home/Documents/Android/ToDoApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/commons-io-2.4_db9d9c7f5dc9abc44c05f9a56b43532b2a4af315/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/home/Documents/Android/ToDoApp/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -43,7 +52,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="640d6c9c65816bb3b351edd45cd2d211f2bbef56">
+        sha1="1bd670e010b417ed8228375acb874a056f71e990">
         <dex dex="/Users/home/Documents/Android/ToDoApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_4c1d74475bf0febe69ecd957f60f826bb76149a5/classes.dex" />
     </item>
     <item
@@ -75,21 +84,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/home/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.1/support-annotations-25.1.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
-        <dex dex="/Users/home/Documents/Android/ToDoApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.1.1_b674aa30b9dc0c55416a27a2d156aa7245b05f75/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/home/Documents/Android/ToDoApp/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
         <dex dex="/Users/home/Documents/Android/ToDoApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-25.1.1_c4b0dbf14bbc2dcaab01004c0596302af7af5c86/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/home/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.1/support-annotations-25.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
+        <dex dex="/Users/home/Documents/Android/ToDoApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.1.1_b674aa30b9dc0c55416a27a2d156aa7245b05f75/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -106,7 +115,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="a2b9f1672cfd9f0d2d8ba33eca8435f678971ba0">
+        sha1="3f3dbaf54fc9987824bd46a93adbe037d543decb">
         <dex dex="/Users/home/Documents/Android/ToDoApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_e2c8b0bfcfcd16787d8d41ed904101261a843ade/classes.dex" />
     </item>
     <item
@@ -120,21 +129,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/home/Documents/Android/ToDoApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/home/Documents/Android/ToDoApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.1.1_b8122ab92886f18d85fcd004f7cc1d714fc43d3d/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/home/Documents/Android/ToDoApp/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
         <dex dex="/Users/home/Documents/Android/ToDoApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.1.1_1350282f953c189c3740e929d04f2a1586a8544c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/home/Documents/Android/ToDoApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/home/Documents/Android/ToDoApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.1.1_b8122ab92886f18d85fcd004f7cc1d714fc43d3d/classes.dex" />
     </item>
 
 </items>
